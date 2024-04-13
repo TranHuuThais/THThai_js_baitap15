@@ -1,44 +1,62 @@
-
-
 .wrapper h1 {
-text-align: center;
+  text-align: center;
 }
-.wrapper h3{
-    color:black
-
- 
+.wrapper h3 {
+  color: black;
 }
-.container-fluid{
-    max-width: 1200px;
-    margin: auto;
+.container-fluid {
+  max-width: 1200px;
+  margin: auto;
 }
-.container {
-   width: 100%;
-   height: auto;
-   background-color:aquamarine;
-   padding: 10px;
-margin-top: auto;
-border-radius: 20px;
-border: 1px solid black;
+.container-edit {
+  width: auto;
+  height: auto;
+  background-color: aquamarine;
+  padding: 10px;
+  margin-top: auto;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+.container-app{
+  width:auto;
+  height: auto;
+  background-color: rgba(127, 255, 212, 0.375);
+  padding: 10px;
+  margin-top: auto;
+  border-radius: 20px;
+  border: 1px solid black;
+  align-items: center;
 }
 
 input[type="text" i] {
-    width: 99%;
-    height: 25px;
-    border-radius: 4px;
-    color: black;
+  width: 99%;
+  height: 25px;
+  border-radius: 4px;
+  color: black;
+  display: flex;
   
 }
-input[type="submit" i]{
-    height: 30px;
-    width: 5%;
-   margin-top: 5px;
-   border-radius: 4px;
+input[type="submit" i] {
+  height: 22px;
+  width: 22%;
+  margin-top: 5px;
+  border-radius: 4px;
   background-color: white;
 }
-.book-list{
-   display: flex;
-   flex-direction: row;
-   gap: 15px;
-   flex-wrap: wrap;
+.book-list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  flex-wrap: wrap;
 }
+.book-list .image{
+    padding: 10px 10px 10px 10px;
+    border: 1px solid black;
+    height: 300px;
+}
+.delete{
+    width: 45%;
+    margin: 5px;
+background-color: white;
+}
+
