@@ -32,7 +32,9 @@ const BookCreate = ({ onCreate }) => {
         />
         <label htmlFor="des">Description</label>
         <input onChange={handleChangeDes} type="text" id="des" value={des} />
-        <input type="submit" value="Create!" />
+        <p>
+          <input type="submit" value="Create!" />
+        </p>
       </form>
     </div>
   );

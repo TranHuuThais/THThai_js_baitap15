@@ -3,6 +3,8 @@
 }
 .wrapper h3 {
   color: black;
+  text-align: center;
+ font-size: 30px;
 }
 .container-fluid {
   max-width: 1200px;
@@ -20,7 +22,7 @@
 .container-app{
   width:auto;
   height: auto;
-  background-color: rgba(127, 255, 212, 0.375);
+
   padding: 10px;
   margin-top: auto;
   border-radius: 20px;
@@ -42,7 +44,8 @@ input[type="submit" i] {
   margin-top: 5px;
   border-radius: 4px;
   background-color: white;
-}
+  
+ }
 .book-list {
   display: flex;
   flex-direction: row;
@@ -58,5 +61,25 @@ input[type="submit" i] {
     width: 45%;
     margin: 5px;
 background-color: white;
+border-radius: 5px;
+}
+.container{
+
+  background-color: rgba(0, 255, 255, 0.625);
+  border-radius: 20px;
+  border: 1px solid black;
+  padding: 10px;
+  margin-top:10px;
+  width: auto;
+  height: auto;
 }
 
+.text{
+  text-align: center;
+}
+.create{
+  align-items: center;
+}
+.container p{
+text-align: center;
+}
