@@ -15,6 +15,8 @@ const BookCreate = ({ onCreate }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const book = { title, des };
+    setTitle("");
+    setDes("");
     // console.log(book);
     onCreate(book);
   };

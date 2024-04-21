@@ -21,7 +21,8 @@ const BookEdit = ({ book, onEdit }) => {
       des: des,
     });
   };
-  const handleCancel = async (e) => {
+
+  const handleCancel = () => {
     setTitle(originalTitle);
     setDes(originalDes);
   };
@@ -47,10 +48,7 @@ const BookEdit = ({ book, onEdit }) => {
           value={des}
         />
         <input type="submit" value="Save" />
-        <p>
-          {" "}
-          <button onChange={handleCancel}>Cancel</button>
-        </p>
+        <button onClick={handleCancel}>Cancel</button>
       </form>
     </div>
   );
