@@ -30,17 +30,20 @@ const Provider = ({ children }) => {
         setBooks(books.filter((item) => item.id !== book.id));
     }
     
-    useEffect(async () => { 
-        const tams = await FetchBooks();
-        console.log(tams);
-        setBooks(tams);
+    useEffect(() => { 
+        const fetchData = async () => {
+            const tams = await FetchBooks();
+            console.log(tams);
+            setBooks(tams);
+        };
+    
+        fetchData();
     }, []);
 
     const valueShare = {
         onCreate: handleCreate,
         onEdit: handleUpdate,
         onDelete: handleDelete,
-        useEffect,
         books
     };
 
