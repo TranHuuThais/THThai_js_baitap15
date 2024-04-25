@@ -1,41 +1,31 @@
 import BookCreate from "./compoments/BookCreate";
 import  BookList from "./compoments/BookList";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import BookSearch from "./compoments/BookSearch";
+import Pagination from "./compoments/pagination";
+import {BookContext} from "./context/book"
 
 import "./App.css";
-import { CreateBook, DeleteBook, FetchBooks, UpdateBook } from "./api";
+
 
 const App = () => {
-    const [books, setBooks] = useState([]);
+    const { books, onCreate, onEdit, onDelete } = useContext(BookContext);
     const [searchTerm, setSearchTerm] = useState("");
-  
-    const handleDelete = async (id) => {
-      const book = await DeleteBook(id);
-      setBooks(books.filter((item) => item.id !== book.id));
-    };
-  
-    const handleCreate = async (term) => {
-      const book = await CreateBook(term);
-      if (book) setBooks([...books, book]);
-    };
-  
-    const handleUpdate = async (id, term) => {
-      const book = await UpdateBook(id, term);
-      setBooks(books.map((item) => (item.id === book.id ? book : item)));
-    };
-  
+    const [currentPage, setCurrentPage] = useState(1);
+    const [booksPerPage] = useState(5); 
     useEffect(() => {
-      const fetchData = async () => {
-        const fetchedBooks = await FetchBooks();
-        setBooks(fetchedBooks);
-      };
-      fetchData();
+      
     }, []);
   
     const filteredBooks = books.filter((book) =>
       book.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
+  
+    // Pagination
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+    const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
   
     return (
       <div className="wrapper">
@@ -43,12 +33,16 @@ const App = () => {
           <h1 className="text">READING BOOK</h1>
           <BookSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <div className="window">
-            <BookList books={filteredBooks} onDelete={handleDelete} onEdit={handleUpdate} />
+            <BookList
+              books={filteredBooks.slice((currentPage - 1) * booksPerPage, currentPage * booksPerPage)}
+              onDelete={onDelete}
+              onEdit={onEdit}
+            />
           </div>
+          <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
         </div>
-        <BookCreate onCreate={handleCreate} />
+        <BookCreate onCreate={onCreate} />
       </div>
     );
 };
-
 export default App;

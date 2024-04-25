@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const BookShow = ({ book, onDelete, onEdit }) => {
   console.log(book);
-  const image = `http://picsum.photos/seed/${book.id}/300/300`;
+  const image = `http://picsum.photos/seed/${book.id}/200/300`;
   const [isEdit, setIsEdit] = useState(false);
   const handleEdit = (id, term) => {
     onEdit(id, term);
