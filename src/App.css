@@ -83,3 +83,7 @@ border-radius: 5px;
 .container p{
 text-align: center;
 }
+.search-container{
+  width: 20%;
+  margin: 10px;
+}

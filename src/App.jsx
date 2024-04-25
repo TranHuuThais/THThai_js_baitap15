@@ -1,8 +1,11 @@
 import BookCreate from "./compoments/BookCreate";
 import  BookList from "./compoments/BookList";
 import { useState, useEffect } from "react";
+import BookSearch from "./compoments/BookSearch";
+
 import "./App.css";
 import { CreateBook, DeleteBook, FetchBooks, UpdateBook } from "./api";
+
 const App = () => {
     const [books, setBooks] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -38,14 +41,7 @@ const App = () => {
       <div className="wrapper">
         <div className="container-app">
           <h1 className="text">READING BOOK</h1>
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+          <BookSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <div className="window">
             <BookList books={filteredBooks} onDelete={handleDelete} onEdit={handleUpdate} />
           </div>
@@ -53,5 +49,6 @@ const App = () => {
         <BookCreate onCreate={handleCreate} />
       </div>
     );
-  };
+};
+
 export default App;
