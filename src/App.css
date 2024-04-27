@@ -98,3 +98,53 @@ margin: 5px;
 display: flex;
 margin: auto;
 }
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.page-link:hover {
+  text-decoration: underline;
+}
+.pagination-info span {
+
+font-size: large;
+color: grey;
+
+
+}
+.pagination-info{
+  margin-left: 45%;
+
+
+}
+.pagination-info button{
+  margin: 5px;
+}
+
+ .search{
+  width: 5%;
+  height: 30px;
+  font-size: 10px;
+ }
+ input.search {
+  width: 20%;
+}

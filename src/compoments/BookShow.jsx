@@ -1,5 +1,6 @@
 import BookEdit from "./BookEdit";
 import { useState } from "react";
+import "../App.css"
 
 
 const BookShow = ({ book, onDelete, onEdit }) => {

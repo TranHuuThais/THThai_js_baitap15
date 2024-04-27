@@ -1,48 +1,58 @@
 import BookCreate from "./compoments/BookCreate";
-import  BookList from "./compoments/BookList";
+import BookList from "./compoments/BookList";
 import { useState, useEffect, useContext } from "react";
-import BookSearch from "./compoments/BookSearch";
-import Pagination from "./compoments/pagination";
-import {BookContext} from "./context/book"
-
+import { BookContext } from "./context/book";
+import { fetchBooks } from "./api";
 import "./App.css";
 
-
 const App = () => {
-    const { books, onCreate, onEdit, onDelete } = useContext(BookContext);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const [booksPerPage] = useState(5); 
-    useEffect(() => {
-      
-    }, []);
-  
-    const filteredBooks = books.filter((book) =>
-      book.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  
-    // Pagination
-    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
-    const handlePageChange = (pageNumber) => {
-      setCurrentPage(pageNumber);
+  const { books, currentPage, totalBooks, booksPerPage, paginate } =
+    useContext(BookContext);
+  const totalPages = Math.ceil(totalBooks / booksPerPage);
+  const { onCreate, onEdit, onDelete } = useContext(BookContext);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [fetchedBooks, setFetchedBooks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedBooksData = await fetchBooks();
+      setFetchedBooks(fetchedBooksData);
     };
-  
-    return (
-      <div className="wrapper">
-        <div className="container-app">
-          <h1 className="text">READING BOOK</h1>
-          <BookSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-          <div className="window">
-            <BookList
-              books={filteredBooks.slice((currentPage - 1) * booksPerPage, currentPage * booksPerPage)}
-              onDelete={onDelete}
-              onEdit={onEdit}
-            />
-          </div>
-          <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
+    fetchData();
+  }, []);
+
+  const filteredBooks = fetchedBooks.filter((book) =>
+    book.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="wrapper">
+      <div className="container-app">
+        <h1 className="text">READING BOOK  <span>
+            Trang {currentPage} trên {totalPages}
+          </span></h1>
+        <div className="window">
+          <BookList books={filteredBooks} onDelete={onDelete} onEdit={onEdit} />
         </div>
-        <BookCreate onCreate={onCreate} />
+        <div className="pagination-info">
+          <button
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Trước
+          </button>
+          <button
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Sau
+          </button>
+        </div>
       </div>
-    );
+      <BookCreate onCreate={onCreate} />
+    </div>
+    
+  );
+  
 };
 export default App;

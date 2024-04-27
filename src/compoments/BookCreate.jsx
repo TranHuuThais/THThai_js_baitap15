@@ -15,8 +15,8 @@ const BookCreate = ({ onCreate }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const book = { title, des };
-    setTitle("");
-    setDes("");
+    setTitle("title");
+    setDes("des");
     // console.log(book);
     onCreate(book);
   };
@@ -30,10 +30,9 @@ const BookCreate = ({ onCreate }) => {
           onChange={handleChangeTitle}
           type="text"
           id="title"
-          value={title}
         />
         <label htmlFor="des">Description</label>
-        <input onChange={handleChangeDes} type="text" id="des" value={des} />
+        <input onChange={handleChangeDes} type="text" id="des" />
         <p>
           <input type="submit" value="Create!" />
         </p>
